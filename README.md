@@ -199,4 +199,153 @@ const [students, setStudents] = useState(initialStudents);
 * Save data to `localStorage`
 * Add Bootstrap modal for new attendance
 
+## BONUS TASK 1: Edit Remarks (Controlled Input)
+
+### Goal
+
+Allow students to add or edit remarks for each student using React state.
+
+### Instructions
+
+* Add an `<input>` field in `StudentRow.jsx` for remarks
+* Use `value` and `onChange` (controlled input)
+* When remarks change, update the correct student in state
+
+### Hints
+
+* Pass `setStudents` to `StudentRow`
+* Use `map()` to update only the matching student
+
+```js
+onChange={(e) => handleRemarkChange(student.id, e.target.value)}
+```
+
+### Expected Output
+
+* Remarks can be typed per student
+* Data updates instantly
+* No page reload
+
+---
+
+## BONUS TASK 2: Export Attendance as CSV
+
+### Goal
+
+Allow users to download attendance data as a CSV file.
+
+### Instructions
+
+* Add an **Export CSV** button in `AttendancePage.jsx`
+* Convert students array into CSV format
+* Trigger file download using JavaScript
+
+### Hints
+
+* CSV format example:
+
+```
+Roll,Name,Status,Remarks
+001,Alice Johnson,Present,
+002,Bob Smith,Absent,Sick leave
+```
+
+* Use:
+
+```js
+Blob
+URL.createObjectURL()
+<a download>
+```
+
+### Expected Output
+
+* Clicking **Export CSV** downloads a file
+* File opens correctly in Excel / Google Sheets
+
+---
+
+## BONUS TASK 3: Save Attendance to localStorage
+
+### Goal
+
+Persist attendance data even after page refresh.
+
+### Instructions
+
+* On app load, read data from `localStorage`
+* On every students update, save data back to `localStorage`
+
+### Hints
+
+* Use `useEffect`
+
+```js
+useEffect(() => {
+  localStorage.setItem("students", JSON.stringify(students));
+}, [students]);
+```
+
+### Expected Output
+
+* Data remains after refresh
+* No data loss
+
+---
+
+## BONUS TASK 4: Add “New Attendance” Modal (UI Only)
+
+### Goal
+
+Introduce modal-based UI similar to real industry apps.
+
+### Instructions
+
+* Use Bootstrap modal (or simple conditional rendering)
+* Open modal when clicking **Add New Attendance**
+* Modal contains:
+
+  * Class name
+  * Date
+  * Confirm / Cancel buttons
+
+### Rules
+
+* No backend
+* No complex logic
+* UI behavior only
+
+### Expected Output
+
+* Modal opens and closes smoothly
+* Attendance page feels professional
+
+---
+
+## BONUS TASK 5: Attendance Summary Dashboard
+
+### Goal
+
+Display real-time attendance statistics.
+
+### Instructions
+
+* Calculate:
+
+  * Total students
+  * Present count
+  * Absent count
+* Show summary cards above the table
+
+### Hints
+
+```js
+const presentCount = students.filter(s => s.status === "present").length;
+```
+
+### Expected Output
+
+* Counts update automatically
+* No manual refresh
+* Clear visual summary
 ---
